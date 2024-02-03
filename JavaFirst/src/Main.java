@@ -18,6 +18,8 @@ public class Main{
                 System.out.println("Нет бутылок пива на стене");
             }
 
+            
+
 
         }
 
