@@ -18,7 +18,7 @@ public class HomeWorkLesson2 {
         open("https://the-internet.herokuapp.com/drag_and_drop");
         actions().moveToElement($("#column-a")).clickAndHold().moveByOffset(225, 0).release().perform();
         $("#column-a").shouldHave(text("B"));
-       // sleep(5000);
+        sleep(5000);
     }
 
 }
