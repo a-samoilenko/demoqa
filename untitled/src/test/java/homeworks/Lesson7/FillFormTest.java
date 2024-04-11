@@ -1,4 +1,4 @@
-package Lesson7;
+package homeworks.Lesson7;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -34,9 +34,16 @@ public class FillFormTest {
         var eMail = "ivanov@mail.ru";
         var gender = "Male";
         var mobileNumber = "8912365421";
-        var subjects = "Accounting";
+        var yearOfBirth = "1982";
+        var monthOfBirth = "September";
+        var dayOfBirth = "17";
+        var subjects = "Arts";
         var hobbies = "Music";
+        var city = "NCR";
+        var city2 = "Noida";
         var currentAddress = "РАСЕЯ";
+        var assertText = "Thanks for submitting the form";
+
         open("/automation-practice-form");
         $("#firstName").setValue(firstName);
         $("#lastName").setValue(lastName);
@@ -46,16 +53,16 @@ public class FillFormTest {
         $(withText(hobbies)).click();
         $("#currentAddress").setValue(currentAddress);
         $(".react-datepicker__input-container").click();
-        $(".react-datepicker__year-select").$(byText("1982")).click();
-        $(".react-datepicker__month-select").$(byText("September")).click();
-        $(".react-datepicker__day--017").click();
-        $("#subjectsInput").setValue("Arts").pressEnter();
+        $(".react-datepicker__year-select").$(byText(yearOfBirth)).click();
+        $(".react-datepicker__month-select").$(byText(monthOfBirth)).click();
+        $(".react-datepicker__day--0"+dayOfBirth).click();
+        $("#subjectsInput").setValue(subjects).pressEnter();
         $("#state").click();
-        $("#stateCity-wrapper").$(byText("NCR")).click();
+        $("#stateCity-wrapper").$(byText(city)).click();
         $("#city").click();
-        $("#city").$(byText("Noida")).click();
+        $("#city").$(byText(city2)).click();
         $("#submit").click();
-        $("#example-modal-sizes-title-lg").shouldHave(text("Thanks for submitting the form"));
+        $("#example-modal-sizes-title-lg").shouldHave(text(assertText));
 
 
     }

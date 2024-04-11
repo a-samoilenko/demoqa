@@ -1,4 +1,4 @@
-package Lesson3;
+package homeworks.Lesson3;
 
 import org.junit.jupiter.api.Test;
 

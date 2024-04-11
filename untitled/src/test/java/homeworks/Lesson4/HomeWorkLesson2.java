@@ -1,4 +1,4 @@
-package Lesson4;
+package homeworks.Lesson4;
 import org.junit.jupiter.api.Test;
 import com.codeborne.selenide.*;
 import org.openqa.selenium.*;
