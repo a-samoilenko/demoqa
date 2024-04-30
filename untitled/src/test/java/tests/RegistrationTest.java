@@ -5,19 +5,20 @@ import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.*;
 import static pages.RegistrationPage.*;
+import static tests.TestData.*;
 
 public class RegistrationTest extends TestBase {
 
     @Test
     void successRegistrationTest() {
-        String firstName = "Alex",
-                lastName = "Ivanov",
-                eMail = "ivanov@mail.ru",
-                gender = "Male",
-                mobileNumber = "8912365421",
-                yearOfBirth = "1982",
-                monthOfBirth = "September",
-                dayOfBirth = "17",
+        String firstName = fakeFirstname,
+                lastName = rufaker.name().lastName(),
+                eMail = faker.internet().emailAddress(),
+                gender = faker.options().option("Male", "Female", "Other"),
+                mobileNumber = faker.number().numberBetween(1000000000l, 9999999999l) + "",
+                yearOfBirth = faker.number().numberBetween(1900, 2022) + "",
+                monthOfBirth = faker.options().option("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"),
+                dayOfBirth = String.format("%02d", faker.number().numberBetween(1, 28)),
                 subjects = "Arts",
                 hobbies = "Music",
                 city = "NCR",
