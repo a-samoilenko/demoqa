@@ -1,13 +1,27 @@
 import Data.TestData;
-import static Pages.RegistrationPage.*;
+import com.codeborne.selenide.logevents.SelenideLogger;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Owner;
+import io.qameta.allure.Story;
+import io.qameta.allure.selenide.AllureSelenide;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+
+import static Pages.RegistrationPage.*;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
-
+import static io.qameta.allure.Allure.step;
+@Tag("fillform")
 public class FillFormWithJenkinsAndSelenoid extends TestBase {
     @Test
+//    @Feature("Регистрация пользователя")
+//    @Story("Регистрация пользователя")
+//    @Owner("a.samoilenko")
+//    @DisplayName("Успешная регистрация")
     void successRegistrationTest() {
+        SelenideLogger.addListener("allure", new AllureSelenide());
         String firstName = TestData.fakeFirstname,
                 lastName = TestData.rufaker.name().lastName(),
                 eMail = TestData.faker.internet().emailAddress(),
@@ -23,7 +37,10 @@ public class FillFormWithJenkinsAndSelenoid extends TestBase {
                 currentAddress = "РАСЕЯ",
                 assertText = "Thanks for submitting the form";
 
+        step("Открываем главную страницу", () -> {
         openPage();
+        });
+        step("Заполняем пользователские данные", () -> {
         setUser(firstName, lastName);
         setEmail(eMail);
         setGender(gender);
@@ -31,17 +48,15 @@ public class FillFormWithJenkinsAndSelenoid extends TestBase {
         setHobbie(hobbies);
         setcurrentAddress(currentAddress);
         setCalendar(yearOfBirth, monthOfBirth,dayOfBirth);
-
-
         $("#subjectsInput").setValue(subjects).pressEnter();
         $("#state").click();
         $("#stateCity-wrapper").$(byText(city)).click();
         $("#city").click();
         $("#city").$(byText(city2)).click();
         $("#submit").click();
+        });
+        step("Проверяем успешное заполнение формы", () -> {
         $("#example-modal-sizes-title-lg").shouldHave(text(assertText));
-
+        });
     }
-
-
 }
