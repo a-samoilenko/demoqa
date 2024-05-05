@@ -10,6 +10,7 @@ import org.junit.jupiter.api.BeforeEach;
 public class TestBase {
         @BeforeAll
         static void startTest() {
+        Configuration.remote = "https://user1:1234@selenoid.autotests.cloud/wd/hub";
             Configuration.pageLoadStrategy = "none";
             Configuration.timeout = 8000;
             Configuration.baseUrl = "https://demoqa.com";
